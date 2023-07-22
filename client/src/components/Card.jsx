@@ -10,11 +10,33 @@ import axios from 'axios'
 import { onAuthStateChanged } from 'firebase/auth'
 import { firebaseAuth } from '../utils/firebase-config'
 import { useDispatch } from 'react-redux'
+import { removeMovieFromLikedMovies } from '../store/netflixSlice'
 
 const Card = ({ movieData, index, isLiked = false }) => {
   const [isHovered, setIsHovered] = useState(false)
+  const [email, setEmail] = useState('')
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  onAuthStateChanged(firebaseAuth, (currentUser) => {
+    if (currentUser) {
+      setEmail(currentUser.email)
+    } else {
+      navigate('/login')
+    }
+  })
+
+  const addToList = async () => {
+    try {
+      await axios.post('http://localhost:5000/api/user/add', {
+        email,
+        data: movieData,
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <Container
@@ -54,9 +76,19 @@ const Card = ({ movieData, index, isLiked = false }) => {
                 <RiThumbUpFill title='Like' />
                 <RiThumbDownFill title='Dislike' />
                 {isLiked ? (
-                  <BsCheck title='Remove from List' />
+                  <BsCheck
+                    title='Remove from List'
+                    onClick={() =>
+                      dispatch(
+                        removeMovieFromLikedMovies({
+                          email,
+                          movieId: movieData.id,
+                        })
+                      )
+                    }
+                  />
                 ) : (
-                  <AiOutlinePlus title='Add to my list' />
+                  <AiOutlinePlus title='Add to my list' onClick={addToList} />
                 )}
               </div>
               <div className='info'>

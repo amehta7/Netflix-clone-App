@@ -10,7 +10,7 @@ import NotAvailable from '../components/NotAvailable'
 import Slider from '../components/Slider'
 import SelectGenre from '../components/SelectGenre'
 
-const Movies = () => {
+const TvShows = () => {
   const genres = useSelector((state) => state.netflix.genres)
   const movies = useSelector((state) => state.netflix.movies)
   const genresLoaded = useSelector((state) => state.netflix.genresLoaded)
@@ -26,7 +26,7 @@ const Movies = () => {
 
   useEffect(() => {
     if (genresLoaded) {
-      dispatch(fetchMovies({ type: 'movie' }))
+      dispatch(fetchMovies({ type: 'tv' }))
     }
   }, [dispatch, genresLoaded])
 
@@ -46,11 +46,11 @@ const Movies = () => {
         <Navbar isScrolled={isScrolled} />
       </div>
       <div className='data'>
-        <SelectGenre genres={genres} type='movie' />
+        <SelectGenre genres={genres} type='tv' />
         {movies.length ? (
           <Slider movies={movies} />
         ) : (
-          <NotAvailable name='Movies' />
+          <NotAvailable name='Tv Show' />
         )}
       </div>
     </Container>
@@ -68,4 +68,4 @@ const Container = styled.div`
   }
 `
 
-export default Movies
+export default TvShows

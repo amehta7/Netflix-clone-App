@@ -5,6 +5,8 @@ import Signup from './pages/Signup'
 import Netflix from './pages/Netflix'
 import Player from './pages/Player'
 import Movies from './pages/Movies'
+import TvShows from './components/TvShows'
+import LikedMovies from './pages/LikedMovies'
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
 
         <Route path='/player' element={<Player />} />
         <Route path='/movies' element={<Movies />} />
+        <Route path='/tv' element={<TvShows />} />
+        <Route path='/mylist' element={<LikedMovies />} />
         <Route path='/' element={<Netflix />} />
       </Routes>
     </BrowserRouter>
