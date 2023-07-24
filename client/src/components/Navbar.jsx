@@ -1,16 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import logo from '../assets/logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaSearch, FaPowerOff } from 'react-icons/fa'
 import { signOut, onAuthStateChanged } from 'firebase/auth'
 import { firebaseAuth } from '../utils/firebase-config'
+import { searchByNameMovies, fetchMovies } from '../store/netflixSlice'
+import { useSelector, useDispatch } from 'react-redux'
 
 const Navbar = ({ isScrolled }) => {
+  const movies = useSelector((state) => state.netflix.movies)
+
   const [showSearch, setShowSearch] = useState(false)
   const [inputHover, setInputHover] = useState(false)
+  const [name, setName] = useState('')
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    name ? dispatch(searchByNameMovies(name)) : dispatch(fetchMovies())
+  }, [name, dispatch])
 
   const links = [
     { name: 'Home', link: '/' },
@@ -62,6 +72,10 @@ const Navbar = ({ isScrolled }) => {
               onBlur={() => {
                 setShowSearch(false)
                 setInputHover(false)
+              }}
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value)
               }}
             />
           </div>

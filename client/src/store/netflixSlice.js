@@ -90,6 +90,22 @@ export const removeMovieFromLikedMovies = createAsyncThunk(
   }
 )
 
+export const searchByNameMovies = createAsyncThunk(
+  'netflix/searchByName',
+  async (name, thunkAPI) => {
+    try {
+      const movies = thunkAPI.getState().netflix.movies
+      let searchedMovies = movies.filter((m) =>
+        m.name.toLowerCase().startsWith(name.toLowerCase())
+      )
+      console.log(searchedMovies)
+      return searchedMovies
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
+
 const netflixSlice = createSlice({
   name: 'netflix',
   initialState: initialState,
@@ -110,6 +126,9 @@ const netflixSlice = createSlice({
         state.movies = action.payload
       })
       .addCase(removeMovieFromLikedMovies.fulfilled, (state, action) => {
+        state.movies = action.payload
+      })
+      .addCase(searchByNameMovies.fulfilled, (state, action) => {
         state.movies = action.payload
       })
   },

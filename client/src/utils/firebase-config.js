@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCgvlqJeH5cosYkJDWRmYracq0vJVa3sJQ',
-  authDomain: 'mern-netflix-clone-3174f.firebaseapp.com',
-  projectId: 'mern-netflix-clone-3174f',
-  storageBucket: 'mern-netflix-clone-3174f.appspot.com',
-  messagingSenderId: '355221026610',
-  appId: '1:355221026610:web:9a8c6f940da9faa3d6492b',
+  apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
+  authDomain: `${process.env.REACT_APP_FIREBASE_AUTHDOMAIN}`,
+  projectId: `${process.env.REACT_APP_FIREBASE_PROJECTID}`,
+  storageBucket: `${process.env.REACT_APP_FIREBASE_STORAGEBUCKET}`,
+  messagingSenderId: `${process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID}`,
+  appId: `${process.env.REACT_APP_FIREBASE_APPID}`,
 }
 
 const app = initializeApp(firebaseConfig)

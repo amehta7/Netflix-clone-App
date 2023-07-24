@@ -20,12 +20,14 @@ const addToLikedMovies = async (req, res) => {
           { new: true }
         )
       } else {
-        return res.json({ msg: 'Movie already added to the liked list.' })
+        res.json({ msg: 'Movie already added to the liked list.' })
+        return
       }
     } else {
       await User.create({ email, likedMovies: [data] })
     }
-    return res.json({ msg: 'Movie added successfully!' })
+    res.json({ msg: 'Movie added successfully!' })
+    return
   } catch (error) {
     return res.json({ msg: 'Error in adding movie' })
   }
@@ -39,6 +41,7 @@ const getLikedMovies = async (req, res) => {
 
     if (user) {
       res.json({ msg: 'success', movies: user.likedMovies })
+      return
     } else {
       return res.json({ msg: 'User with given email not found.' })
     }
@@ -73,10 +76,11 @@ const removeMovies = async (req, res) => {
         },
         { new: true }
       )
-      return res.json({
+      res.json({
         msg: 'Movie successfully removed.',
         movies: user.likedMovies,
       })
+      return
     } else return res.json({ msg: 'User with given email not found.' })
   } catch (error) {
     console.log(error)
