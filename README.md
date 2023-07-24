@@ -13,7 +13,7 @@
 3. Run using npm
    $ npm start
 
-### Connect To MongoDB with your values in .env file to run the server.
+#### Connect To MongoDB with your values in .env file to run the server.
 
 1. get connection string from MongoDB
 2. setup .env with MONGO Database users credentials, password and assign the values
@@ -30,7 +30,7 @@
 3. Run using npm
    $ npm start
 
-### Set up your .env file with your values to run the client.
+#### Set up your .env file with your values to run the client.
 
 .env vars :
 
