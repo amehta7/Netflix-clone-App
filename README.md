@@ -1,8 +1,11 @@
-# Netflix-clone-App : MERN stack with Firebase Authentication
+#### Netflix-clone-App 
 
-#### Make sure client(port 3000) and server(port 5000) both are running simultaneously to run this app.
+- The Netflix Clone App is a web application designed to mimic the user interface and functionality of the popular streaming platform Netflix.
+- Leveraging the power of React.js, MongoDB, Node.js, Express.js, Firebase, Styled-components, and Axios, this project provides users with a visually appealing and feature-rich platform for browsing and streaming video content.
 
-#### Server - Port : 5000
+##### Make sure client(port 3000) and server(port 5000) both are running simultaneously to run this app.
+
+##### Server - Port : 5000
 
 1. Navigate to the server directory
    $ cd backend
@@ -13,7 +16,7 @@
 3. Run using npm
    $ npm start
 
-#### Connect To MongoDB with your values in .env file to run the server.
+##### Connect To MongoDB with your values in .env file to run the server.
 
 1. get connection string from MongoDB
 2. setup .env with MONGO Database users credentials, password and assign the values
@@ -30,7 +33,7 @@
 3. Run using npm
    $ npm start
 
-#### Set up your .env file with your values to run the client.
+##### Set up your .env file with your values to run the client.
 
 .env vars :
 
